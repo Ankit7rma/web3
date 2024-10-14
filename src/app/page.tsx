@@ -1,7 +1,7 @@
-"use client";
+"use client"; // This is for client-side rendering in Next.js
 import React, { useState } from "react";
 import { generateMnemonic } from "bip39";
-import { mnemonicToSeed } from "bip39";
+import { mnemonicToSeed } from "bip39"; // make sure you're importing from the same bip39 package
 import { derivePath } from "ed25519-hd-key";
 import { Keypair } from "@solana/web3.js";
 import nacl from "tweetnacl";
@@ -35,6 +35,11 @@ const SolanaWallet: React.FC<SolanaWalletProps> = ({ mnemonic }) => {
   const [publicKeys, setPublicKeys] = useState<Keypair["publicKey"][]>([]);
 
   const handleAddWallet = () => {
+    if (!mnemonic) {
+      alert("Please generate a seed phrase first.");
+      return;
+    }
+
     const seed = mnemonicToSeed(mnemonic);
     const path = `m/44'/501'/${currentIndex}'/0'`;
     const derivedSeed = derivePath(path, seed.toString("hex")).key;
@@ -64,6 +69,11 @@ const EthWallet: React.FC<EthWalletProps> = ({ mnemonic }) => {
   const [addresses, setAddresses] = useState<string[]>([]);
 
   const handleAddWallet = async () => {
+    if (!mnemonic) {
+      alert("Please generate a seed phrase first.");
+      return;
+    }
+
     const seed = await mnemonicToSeed(mnemonic);
     const derivationPath = `m/44'/60'/${currentIndex}'/0'`;
     const hdNode = HDNodeWallet.fromSeed(seed);
