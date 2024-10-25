@@ -13,11 +13,18 @@ import {
 import "@solana/wallet-adapter-react-ui/styles.css";
 import { RequestAirdrop } from "./Airdrop";
 import { ShowSolBalance } from "./ShowSolBalance";
+import { SendTokens } from "./SendTokens";
 
 function App() {
   return (
     <>
-      <ConnectionProvider endpoint={"https://api.devnet.solana.com"}>
+      <ConnectionProvider
+        endpoint={
+          "https://solana-devnet.g.alchemy.com/v2/c609qx6p1WPIwlHJbyzdUZy9vvOhCe5t"
+        }
+      >
+        {/* From Alchemy Apps Devenet  */}
+        {/* <ConnectionProvider endpoint={"https://api.devnet.solana.com"}> */}
         <WalletProvider wallets={[]} autoConnect>
           <WalletModalProvider>
             <div
@@ -32,6 +39,7 @@ function App() {
             </div>
             <RequestAirdrop />
             <ShowSolBalance />
+            <SendTokens />
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>
