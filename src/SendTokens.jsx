@@ -5,6 +5,9 @@ import {
   SystemProgram,
   Transaction,
 } from "@solana/web3.js";
+import { Buffer } from "buffer";
+
+window.Buffer = Buffer;
 
 export function SendTokens() {
   const wallet = useWallet();
