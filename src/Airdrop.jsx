@@ -20,7 +20,7 @@ export function RequestAirdrop() {
       <br />
       <input id="amount" type="text" placeholder="Amount" />
       <button onClick={requestAirdrop}>Request Airdrop</button>
-      {wallet.publicKey?.toBase58()}
+{/*       {wallet.publicKey?.toBase58()} */}
     </div>
   );
 }
